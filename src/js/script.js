@@ -145,7 +145,7 @@
             // check if there is param with a name of paramId in formData and if it includes optionId
           if(formData[paramId] && formData[paramId].includes(optionId)) {
             // check if the option is not default
-            if(option.default == false) {
+            if(!option.default == true) {
               // add option price to price variable
               price += option.price;
             }
@@ -157,10 +157,10 @@
             }
         }
       }
-    }
-    // update calculated price in the HTML
+      // update calculated price in the HTML
     thisProduct.priceElem.innerHTML = price;
-  }
+    }
+  };
   const app = {
     initMenu: function () {
       const thisApp = this;
