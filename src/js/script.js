@@ -81,6 +81,7 @@
       const thisProduct = this;
       thisProduct.id = id;
       thisProduct.data = data;
+
       thisProduct.renderInMenu();
       thisProduct.getElements();
       thisProduct.initAccordion();
@@ -152,6 +153,7 @@
       thisProduct.cartButton.addEventListener('click', function (event) {
         event.preventDefault();
         thisProduct.processOrder();
+        thisProduct.addToCart();
       });
     }
     processOrder() {
@@ -196,10 +198,62 @@
           }
         }
       }
+      thisProduct.priceSingle = price;
       /* multiply price by amount */
       price *= thisProduct.amountWidget.value;
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
+    }
+    initAmountWidget() {
+      const thisProduct = this;
+      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+      thisProduct.amountWidgetElem.addEventListener('updated', function () {
+        thisProduct.processOrder();
+      });
+    }
+    addToCart() {
+      const thisProduct = this;
+
+      app.cart.add(thisProduct.prepareCartProduct());
+    }
+    prepareCartProduct() {
+      const thisProduct = this;
+
+      const productSummary = {};
+      productSummary.id = thisProduct.id;
+      productSummary.name = thisProduct.data.name;
+      productSummary.amount = thisProduct.amountWidget.value;
+      productSummary.priceSingle = thisProduct.priceSingle;
+      productSummary.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
+      productSummary.params = thisProduct.prepareCartProductParams();
+
+      return productSummary;
+    }
+    prepareCartProductParams() {
+      const thisProduct = this;
+
+      const formData = utils.serializeFormToObject(thisProduct.form);
+      const params = {};
+
+      // for every category (param)
+      for (let paramId in thisProduct.data.params) {
+        const param = thisProduct.data.params[paramId];
+        // create category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
+        params[paramId] = {
+          name: param.label,
+          options: {},
+        };
+
+        for (let optionId in param.options) {
+          const option = param.options[optionId];
+          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
+
+          if (optionSelected) {
+            params[paramId].options = option.label;
+          }
+        }
+      }
+      return params;
     }
     initAmountWidget() {
       const thisProduct = this;
@@ -217,8 +271,8 @@
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions();
 
-      console.log('AmountWidget:', thisWidget);
-      console.log('constructor arguments:', element);
+      //console.log('AmountWidget:', thisWidget);
+      //console.log('constructor arguments:', element);
     }
     getElements(element) {
       const thisWidget = this;
@@ -270,7 +324,7 @@
 
       thisCart.getElements(element);
       thisCart.initActions();
-      console.log('new Cart', thisCart);
+      //console.log('new Cart', thisCart);
     }
     getElements(element) {
       const thisCart = this;
@@ -286,6 +340,10 @@
         event.preventDefault();
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
+    }
+    add(menuProduct) {
+      const thisCart = this;
+      console.log('adding product', menuProduct);
     }
   }
   const app = {
