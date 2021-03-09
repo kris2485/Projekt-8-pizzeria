@@ -240,7 +240,7 @@
         const param = thisProduct.data.params[paramId];
         // create category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
         params[paramId] = {
-          name: param.label,
+          label: param.label,
           options: {},
         };
 
@@ -249,7 +249,7 @@
           const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
 
           if (optionSelected) {
-            params[paramId].options = option.label;
+            params[paramId].options[optionId] = option.label;
           }
         }
       }
