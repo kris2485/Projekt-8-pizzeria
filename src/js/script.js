@@ -367,7 +367,7 @@
     }
     update() {
       const thisCart = this;
-      const deliveryFee = settings.cart.defaultDeliveryFee;
+      let deliveryFee = settings.cart.defaultDeliveryFee;
       thisCart.totalNumber = 0;
       thisCart.subtotalPrice = 0;
       for (let product of thisCart.products) {
@@ -376,7 +376,8 @@
       }
       thisCart.totalPrice = thisCart.totalNumber * thisCart.subtotalPrice + deliveryFee;
       if (thisCart.totalNumber == 0) {
-        thisCart.totalPrice == 0;
+        thisCart.totalPrice = 0;
+        deliveryFee = 0;
       }
       thisCart.dom.deliveryFee.innerHTML = deliveryFee;
       thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
