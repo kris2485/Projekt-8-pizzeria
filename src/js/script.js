@@ -419,13 +419,14 @@
       const payload = {};
 
       payload.address = thisCart.dom.address.value;
-      payload.phone = thisCart.dom.address.value;
+      payload.phone = thisCart.dom.phone.value;
       payload.totalPrice = thisCart.totalPrice;
       payload.subtotalPrice = thisCart.subtotalPrice;
       payload.totalNumber = thisCart.totalNumber;
       payload.deliveryFee = deliveryFee;
       payload.products = [];
       console.log('payload', payload);
+
       for (let prod of thisCart.products) {
         payload.products.push(prod.getData());
       }
