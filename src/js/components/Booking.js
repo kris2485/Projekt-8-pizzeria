@@ -19,7 +19,11 @@ class Booking {
     thisBooking.dom.peopleAmount = document.querySelector(select.booking.peopleAmount);
     thisBooking.dom.hoursAmount = document.querySelector(select.booking.hoursAmount);
   }
-  initWidget() {}
+  initWidget() {
+    const thisBooking = this;
+    thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
+    thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
+  }
 }
 
 export default Booking;
