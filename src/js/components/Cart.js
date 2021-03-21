@@ -65,7 +65,7 @@ class Cart {
       thisCart.totalNumber = thisCart.totalNumber + product.amount;
       thisCart.subtotalPrice = thisCart.subtotalPrice + product.price;
     }
-    thisCart.totalPrice = thisCart.totalNumber * thisCart.subtotalPrice + deliveryFee;
+    thisCart.totalPrice = thisCart.subtotalPrice + deliveryFee;
     if (thisCart.totalNumber == 0) {
       thisCart.totalPrice = 0;
       deliveryFee = 0;
