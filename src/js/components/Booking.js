@@ -7,6 +7,7 @@ import HourPicker from './HourPicker.js';
 class Booking {
   constructor(element) {
     const thisBooking = this;
+    thisBooking.tableSelect = {};
 
     thisBooking.render(element);
     thisBooking.initWidget();
@@ -47,6 +48,7 @@ class Booking {
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
       });
   }
+
   parseData(bookings, eventsCurrent, eventsRepeat) {
     const thisBooking = this;
 
@@ -90,6 +92,7 @@ class Booking {
       thisBooking.booked[date][houurBlock].push(table);
     }
   }
+
   updateDOM() {
     const thisBooking = this;
 
@@ -127,6 +130,25 @@ class Booking {
     thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+    thisBooking.dom.restaurantTables = thisBooking.dom.wrapper.querySelector(select.booking.restaurantTables);
+  }
+  initTables(event) {
+    const thisBooking = this;
+
+    const clickedElement = event.target;
+    console.log('clickedElement', clickedElement);
+    if (clickedElement.classList.contains(classNames.booking.tableBooked)) {
+      alert("We're are sorry, this table is already booked");
+    }
+    if (!clickedElement.classList.contains(classNames.booking.tableBooked)) {
+      const tableClick = clickedElement.getAttribute('data-table');
+      thisBooking.tableSelect[tableClick];
+
+      for (let table of thisBooking.dom.tables) {
+        table.classList.remove(classNames.booking.tableSelected);
+        clickedElement.classList.add(classNames.booking.tableSelected);
+      }
+    }
   }
   initWidget() {
     const thisBooking = this;
@@ -137,6 +159,9 @@ class Booking {
 
     thisBooking.dom.wrapper.addEventListener('updated', function () {
       thisBooking.updateDOM();
+    });
+    thisBooking.dom.restaurantTables.addEventListener('click', function (event) {
+      thisBooking.initTables(event);
     });
   }
 }

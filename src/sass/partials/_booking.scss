@@ -213,3 +213,9 @@
   @include flex(row, flex-start, space-between);
   margin: ($base-size * 4) auto;
 }
+.selected {
+  cursor: pointer;
+  border: 1px solid #3e5da5;
+  background: #56c780;
+  color: #fff;
+}

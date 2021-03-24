@@ -15,13 +15,6 @@
         "ignore": ["pseudo-classes"]
       }
     ],
-    "rule-empty-line-before": [
-      "always",
-      {
-        "except": ["first-nested"],
-        "ignore": ["after-comment"]
-      }
-    ],
     "unit-whitelist": null,
     "scss/at-extend-no-missing-placeholder": true,
     "scss/selector-no-redundant-nesting-selector": true,

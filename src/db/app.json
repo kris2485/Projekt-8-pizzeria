@@ -255,9 +255,9 @@
     {
       "id": 1,
       "date": "2021-03-27",
-      "hour": "12:30",
+      "hour": "19:30",
       "table": 1,
-      "duration": 4,
+      "duration": 1,
       "ppl": 3,
       "starters": ["lemonWater"]
     }
