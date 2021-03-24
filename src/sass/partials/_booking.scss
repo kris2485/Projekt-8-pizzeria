@@ -164,6 +164,12 @@
     transform: rotate(45deg);
     transform-origin: 50% 50%;
     cursor: pointer;
+    &.selected {
+      cursor: pointer;
+      border: 1px solid #3e5da5;
+      background: #56c780;
+      color: #fff;
+    }
 
     &--round {
       border-radius: 50%;
@@ -212,10 +218,4 @@
 .booking-options {
   @include flex(row, flex-start, space-between);
   margin: ($base-size * 4) auto;
-}
-.selected {
-  cursor: pointer;
-  border: 1px solid #3e5da5;
-  background: #56c780;
-  color: #fff;
 }

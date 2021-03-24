@@ -113,6 +113,7 @@ class Booking {
         table.classList.add(classNames.booking.tableBooked);
       } else {
         table.classList.remove(classNames.booking.tableBooked);
+        table.classList.remove(classNames.booking.tableSelected);
       }
     }
   }
@@ -141,7 +142,7 @@ class Booking {
       alert("We're are sorry, this table is already booked");
     }
     if (!clickedElement.classList.contains(classNames.booking.tableBooked)) {
-      const tableClick = clickedElement.getAttribute('data-table');
+      const tableClick = clickedElement.getAttribute(settings.booking.tableIdAttribute);
       thisBooking.tableSelect[tableClick];
 
       for (let table of thisBooking.dom.tables) {
