@@ -104,7 +104,7 @@ class Cart {
     payload.totalNumber = thisCart.totalNumber;
     payload.deliveryFee = deliveryFee;
     payload.products = [];
-    console.log('payload', payload);
+    //console.log('payload', payload);
 
     for (let prod of thisCart.products) {
       payload.products.push(prod.getData());
