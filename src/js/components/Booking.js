@@ -110,7 +110,7 @@ class Booking {
       if (!isNaN(tableID)) {
         tableID = parseInt(tableID);
       }
-      if (!allAvailable && thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableID) > -1) {
+      if (!allAvailable && thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableID)) {
         table.classList.add(classNames.booking.tableBooked);
       } else {
         table.classList.remove(classNames.booking.tableBooked);
@@ -187,7 +187,7 @@ class Booking {
     const payload = {};
     payload.date = thisBooking.date;
     payload.hour = utils.numberToHour(thisBooking.hour);
-    payload.table = thisBooking.tableSelect.id;
+    payload.table = parseInt(thisBooking.tableSelect.id);
     payload.duration = thisBooking.hoursAmount.value;
     payload.ppl = thisBooking.peopleAmount.value;
     payload.starters = [];
