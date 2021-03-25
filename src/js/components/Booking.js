@@ -82,6 +82,7 @@ class Booking {
       thisBooking.booked[date] = {};
     }
     const startHour = utils.hourToNumber(hour);
+    //console.log('startHour', startHour);
 
     for (let houurBlock = startHour; houurBlock < startHour + duration; houurBlock += 0.5) {
       //console.log('loop', houurBlock);
@@ -135,6 +136,7 @@ class Booking {
     thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
     thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
     thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(select.booking.starters);
+    thisBooking.dom.form = thisBooking.dom.wrapper.querySelector('.booking-form');
   }
   initTables(event) {
     const thisBooking = this;
@@ -171,9 +173,12 @@ class Booking {
     for (let table of thisBooking.dom.tables) {
       table.addEventListener('click', function (event) {
         thisBooking.initTables(event);
-        thisBooking.sendBooking();
       });
     }
+    thisBooking.dom.form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      thisBooking.sendBooking();
+    });
   }
   sendBooking() {
     const thisBooking = this;
@@ -181,7 +186,7 @@ class Booking {
 
     const payload = {};
     payload.date = thisBooking.date;
-    payload.hour = thisBooking.hour;
+    payload.hour = utils.numberToHour(thisBooking.hour);
     payload.table = thisBooking.tableSelect.id;
     payload.duration = thisBooking.hoursAmount.value;
     payload.ppl = thisBooking.peopleAmount.value;
@@ -207,7 +212,8 @@ class Booking {
         return response.json();
       })
       .then(function (parasedResponse) {
-        console.log('parasedresponse', parasedResponse);
+        //console.log('parasedresponse', parasedResponse);
+        thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
       });
   }
 }
