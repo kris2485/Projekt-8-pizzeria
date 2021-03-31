@@ -1,0 +1,153 @@
+.home-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.wrapper-home {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 60px;
+  padding-inline: 160px;
+}
+.box {
+  flex: 0 0 50%;
+  position: relative;
+  text-align: center;
+  height: 120px;
+  max-width: 335px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 5px;
+  margin-bottom: 10px;
+
+  a {
+    text-decoration: none;
+    color: #fff;
+    h2 {
+      text-transform: uppercase;
+      margin-top: 40px;
+    }
+    p {
+      display: none;
+    }
+  }
+  a:hover {
+    h2 {
+      transform: translateY(-10px);
+      transition: 1s;
+    }
+    p {
+      display: block;
+      transform: translateY(-20px);
+      transition: 1s;
+    }
+  }
+}
+.box-order {
+  background-image: url('https://i.postimg.cc/c1YjcJFW/pizza-1.jpg');
+}
+.box-booking {
+  background-image: url('https://i.postimg.cc/wBZfXKJ3/pizza-2.jpg');
+}
+.box-hours {
+  flex: 100%;
+  text-align: center;
+  background-color: #ef6969;
+  border-radius: 5px;
+  color: #fff;
+  text-transform: uppercase;
+}
+/* carousel */
+.carousel-container {
+  margin-bottom: 300px;
+  margin-top: 150px;
+  .main-carousel {
+    width: 1000px;
+    left: 200px;
+    .flickity-button {
+      display: none;
+    }
+  }
+  .carousel-wrapper {
+    position: relative;
+    display: flex;
+    left: 200px;
+    flex: 0 0 50%;
+    height: 300px;
+    width: 900px;
+
+    img {
+      object-fit: cover;
+      display: flex;
+    }
+    .carousel-text {
+      margin-left: 20px;
+      width: 200px;
+    }
+  }
+}
+/* gallery */
+.gallery-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 150px;
+
+  .wrap-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 30px;
+    a {
+      color: #ef6969;
+    }
+    .wrapper-galerry {
+      flex: 0 0 33.333%;
+      position: relative;
+      padding: 5px;
+    }
+  }
+  .gallery-img {
+    width: 300px;
+    position: relative;
+
+    img {
+      height: 300px;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .font-gallery {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      .fas {
+        padding: 5px;
+        color: #fff;
+        font-size: 22px;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.gallery-img::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, black 100%);
+  z-index: 1;
+  border-radius: 5px;
+  display: none;
+}
+.gallery-img:hover::after {
+  display: block;
+  cursor: pointer;
+}
+.fas:hover {
+  color: #ef6969;
+}
