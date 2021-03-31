@@ -121,12 +121,14 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      z-index: 10;
 
       .fas {
         padding: 5px;
         color: #fff;
-        font-size: 22px;
+        font-size: 24px;
         display: inline-block;
+        position: relative;
       }
     }
   }
@@ -148,6 +150,7 @@
   display: block;
   cursor: pointer;
 }
-.fas:hover {
+.gallery-img .font-gallery .fas:hover {
   color: #ef6969;
+  cursor: pointer;
 }
